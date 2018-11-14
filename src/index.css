@@ -9,6 +9,10 @@ body {
   line-height: 1.4rem;
 }
 
+.holder {
+  background-color: #f3f3f3;
+}
+
 .holder img {
   width: 200px;
   margin-left: 1rem;
