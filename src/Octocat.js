@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Cat from './Cat'
 
 class Octocat extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       cats: []
     }
@@ -13,7 +13,14 @@ class Octocat extends Component {
     fetch('https://sdg-octodex.herokuapp.com/')
       .then(response => response.json())
       .then(rawData => {
-        let kitties = rawData.data.map(cat => {
+        this.setState({ cats: rawData.data })
+      })
+  }
+
+  render() {
+    return (
+      <main>
+        {this.state.cats.map(cat => {
           return (
             <Cat
               number={cat.number}
@@ -22,14 +29,9 @@ class Octocat extends Component {
               authors={cat.authors}
             />
           )
-        })
-        this.setState({ cats: kitties })
-        console.log(kitties)
-      })
-  }
-
-  render() {
-    return <main>{this.state.cats}</main>
+        })}
+      </main>
+    )
   }
 }
 
